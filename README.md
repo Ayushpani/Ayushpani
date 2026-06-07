@@ -3,6 +3,13 @@
   <img src="./assets/banner.svg" alt="Ayush Panigrahi Banner" width="100%" />
 </p>
 
+<!-- Launch Interactive Console -->
+<p align="center">
+  <a href="https://ayushpani.github.io/Ayushpani/" target="_blank">
+    <img src="https://img.shields.io/badge/Telemetry-Launch%20Interactive%20Console-D4AF37?style=for-the-badge&logo=kubernetes&logoColor=080C14" alt="Launch Telemetry Console" />
+  </a>
+</p>
+
 ---
 
 ## Professional Summary

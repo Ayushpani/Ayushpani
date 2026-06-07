@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayush Panigrahi | AI Platform &amp; MLOps Console</title>
+  <!-- Import Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Reset & Variable Definitions */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    :root {
+      --bg-color: #080C14;
+      --card-bg: rgba(14, 18, 28, 0.75);
+      --card-border: #2E3A52;
+      --card-border-hover: #D4AF37;
+      --text-main: #F8FAFC;
+      --text-sub: #94A3B8;
+      --saffron: #E28743;
+      --gold: #D4AF37;
+      --terminal-bg: #0C101A;
+      --terminal-border: #1E293B;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Source Code Pro', monospace;
+    }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Interactive Canvas Background */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: all;
+    }
+    
+    /* Header Styles */
+    header {
+      padding: 40px 80px 20px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    /* Minimalist Shiva Brand Emblem */
+    .shiva-emblem {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .emblem-line {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-sub);
+      opacity: 0.6;
+      border-radius: 1px;
+    }
+    
+    .emblem-center {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .emblem-dot {
+      width: 6px;
+      height: 10px;
+      background-color: var(--saffron);
+      border-radius: 50%;
+    }
+    
+    .trishul-tip {
+      position: absolute;
+      top: -16px;
+      width: 2px;
+      height: 12px;
+      background-color: var(--gold);
+    }
+    
+    .trishul-tip::before, .trishul-tip::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-top: 2px solid var(--gold);
+      bottom: 4px;
+    }
+    
+    .trishul-tip::before {
+      border-left: 2px solid var(--gold);
+      left: -6px;
+      border-radius: 2px 0 0 0;
+    }
+    
+    .trishul-tip::after {
+      border-right: 2px solid var(--gold);
+      right: -6px;
+      border-radius: 0 2px 0 0;
+    }
+    
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+    }
+    
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--saffron);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    
+    /* Main Layout Grid */
+    main {
+      display: grid;
+      grid-template-columns: 450px 1fr;
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 80px 60px 80px;
+      z-index: 1;
+    }
+    
+    /* Left Column Elements */
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    }
+    
+    .hero-card h1 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    
+    .hero-card h2 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--saffron);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    
+    .hero-card p {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    
+    /* Custom Interactive Skills Panel */
+    .skills-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 25px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .skills-panel h3 {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    
+    .skills-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .skill-card {
+      background: rgba(14, 18, 28, 0.6);
+      border: 1px solid var(--card-border);
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .skill-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateX(5px);
+      background: rgba(226, 135, 67, 0.05);
+    }
+    
+    .skill-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .skill-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .skill-desc {
+      font-size: 9.5px;
+      color: var(--text-sub);
+    }
+    
+    .skill-dot {
+      width: 5px;
+      height: 5px;
+      background-color: var(--card-border);
+      border-radius: 50%;
+      transition: background-color 0.3s;
+    }
+    
+    .skill-card:hover .skill-dot {
+      background-color: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+    
+    /* Right Column Elements */
+    .dashboard-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    /* Interactive Architecture Canvas */
+    .interactive-arch {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      position: relative;
+    }
+    
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .panel-header h3 {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--saffron);
+      text-transform: uppercase;
+    }
+    
+    .panel-instruction {
+      font-size: 10px;
+      color: var(--text-sub);
+      font-family: var(--font-mono);
+    }
+    
+    /* Visual Diagram Layout */
+    .flowchart {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 10px;
+      position: relative;
+    }
+    
+    /* Connecting arrows/lines on canvas */
+    .flow-connector {
+      flex: 1;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--card-border) 0px, var(--card-border) 6px, transparent 6px, transparent 12px);
+      position: relative;
+      margin: 0 10px;
+    }
+    
+    .flow-connector.active {
+      background: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 6px, transparent 6px, transparent 12px);
+      animation: march 10s linear infinite;
+    }
+    
+    .arch-node {
+      width: 135px;
+      height: 100px;
+      background: #0E121C;
+      border: 1.5px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .arch-node::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 4px;
+      height: 4px;
+      background-color: var(--saffron);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--saffron);
+      transition: background-color 0.3s;
+    }
+    
+    .arch-node:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      background: #1C1F2E;
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.1);
+    }
+    
+    .arch-node:hover::before {
+      background-color: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+    
+    .arch-node.selected {
+      border-color: var(--gold);
+      background: #1C1F2E;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+    }
+    
+    .node-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .node-body {
+      font-size: 9px;
+      color: var(--text-sub);
+      line-height: 1.4;
+    }
+    
+    .node-label {
+      font-size: 8px;
+      font-weight: 600;
+      color: var(--saffron);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Double Nodes Split Layout */
+    .split-nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .split-connector-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100px;
+      margin: 0 10px;
+      position: relative;
+      width: 40px;
+    }
+    
+    .split-connector {
+      width: 100%;
+      height: 2px;
+      background: var(--card-border);
+    }
+    
+    .split-connector.active {
+      background: var(--gold);
+    }
+    
+    /* Interactive Terminal Simulator */
+    .terminal-panel {
+      background: var(--terminal-bg);
+      border: 1px solid var(--terminal-border);
+      border-radius: 8px;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-sub);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+      position: relative;
+      height: 250px;
+      overflow-y: auto;
+    }
+    
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 15px;
+      color: var(--text-main);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    
+    .terminal-controls {
+      display: flex;
+      gap: 6px;
+    }
+    
+    .control-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #384152;
+    }
+    
+    .control-dot.red { background-color: #EF4444; opacity: 0.8; }
+    .control-dot.yellow { background-color: #F59E0B; opacity: 0.8; }
+    .control-dot.green { background-color: #10B981; opacity: 0.8; }
+    
+    .terminal-log-row {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    
+    .terminal-prompt {
+      color: var(--saffron);
+      font-weight: 700;
+    }
+    
+    .terminal-system {
+      color: var(--text-sub);
+    }
+    
+    .terminal-info {
+      color: #38BDF8;
+    }
+    
+    .terminal-success {
+      color: #34D399;
+    }
+    
+    .terminal-warning {
+      color: var(--gold);
+    }
+    
+    /* Animation Keyframes */
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    
+    @keyframes march {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: 400; }
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 1100px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      header {
+        padding: 30px;
+      }
+      main {
+        padding: 0 30px 40px 30px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .flowchart {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .flow-connector {
+        width: 2px;
+        height: 30px;
+        margin: 10px 0;
+        background: repeating-linear-gradient(180deg, var(--card-border) 0px, var(--card-border) 6px, transparent 6px, transparent 12px);
+      }
+      .split-connector-container {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Interactive Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <header>
+    <div class="brand">
+      <!-- Minimalist Shiva Brand Emblem -->
+      <div class="shiva-emblem">
+        <div class="emblem-line"></div>
+        <div class="emblem-center">
+          <div class="trishul-tip"></div>
+          <div class="emblem-dot"></div>
+        </div>
+        <div class="emblem-line"></div>
+      </div>
+      <div style="font-weight: 700; font-size: 14px; letter-spacing: 1.5px; color: var(--text-main);">AYUSH PANIGRAHI</div>
+    </div>
+    
+    <div class="status-bar">
+      <div class="status-dot"></div>
+      <div>MLOPS TELEMETRY CONSOLE</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Left Column: Biography & Capabilities Shelf -->
+    <section class="profile-info">
+      <div class="hero-card">
+        <h1>Ayush Panigrahi</h1>
+        <h2>AI Platform &amp; MLOps Engineer</h2>
+        <p>
+          Systems Architect building production-grade Kubernetes infrastructures, Model Context Protocol (MCP) workflows, and fine-grained authorization policies (APISIX, Keycloak, OpenFGA). Experience scaling LLaMA/Qwen model inference configurations on modern accelerators and deploying orchestration pipelines.
+        </p>
+      </div>
+      
+      <!-- Interactive Skills Panel -->
+      <div class="skills-panel">
+        <h3>Interactive Capability Shelf</h3>
+        
+        <div class="skills-group">
+          <!-- Skill Card 1 -->
+          <div class="skill-card" onclick="triggerSkill('agentic')">
+            <div class="skill-info">
+              <span class="skill-title">Agentic AI &amp; MCP</span>
+              <span class="skill-desc">LangChain, Swarm, Model Context Protocol, Smaran Memory</span>
+            </div>
+            <div class="skill-dot"></div>
+          </div>
+          
+          <!-- Skill Card 2 -->
+          <div class="skill-card" onclick="triggerSkill('k8s')">
+            <div class="skill-info">
+              <span class="skill-title">Kubernetes Orchestration</span>
+              <span class="skill-desc">Helm, HPA, K8s Operators, Containerization</span>
+            </div>
+            <div class="skill-dot"></div>
+          </div>
+          
+          <!-- Skill Card 3 -->
+          <div class="skill-card" onclick="triggerSkill('auth')">
+            <div class="skill-info">
+              <span class="skill-title">Identity &amp; AuthZ</span>
+              <span class="skill-desc">Keycloak, OpenFGA Fine-Grained Policies, APISIX Reverse Proxy</span>
+            </div>
+            <div class="skill-dot"></div>
+          </div>
+          
+          <!-- Skill Card 4 -->
+          <div class="skill-card" onclick="triggerSkill('pipelines')">
+            <div class="skill-info">
+              <span class="skill-title">Data &amp; MLOps Pipelines</span>
+              <span class="skill-desc">Apache Airflow, NiFi, Kafka, CDC, Airbyte ETL</span>
+            </div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Architecture Diagram & Live Terminal Logs -->
+    <section class="dashboard-panel">
+      <!-- Interactive Flowchart -->
+      <div class="interactive-arch">
+        <div class="panel-header">
+          <h3>Production Request pipeline simulation</h3>
+          <span class="panel-instruction">[ Click any node to trigger telemetry ]</span>
+        </div>
+        
+        <div class="flowchart">
+          <!-- Node 1: Client/CLI -->
+          <div class="arch-node" id="node-client" onclick="selectNode('client')">
+            <span class="node-label">CLI Input</span>
+            <span class="node-title">ks-ai client</span>
+            <span class="node-body">Natural Language K8s command stream</span>
+          </div>
+          
+          <div class="flow-connector active" id="conn-1"></div>
+          
+          <!-- Node 2: API Gateway -->
+          <div class="arch-node" id="node-gateway" onclick="selectNode('gateway')">
+            <span class="node-label">API Gateway</span>
+            <span class="node-title">APISIX / Keycloak</span>
+            <span class="node-body">Rate limits &amp; fine-grained AuthZ policies</span>
+          </div>
+          
+          <div class="flow-connector active" id="conn-2"></div>
+          
+          <!-- Node 3: Agent Orchestrator -->
+          <div class="arch-node" id="node-agent" onclick="selectNode('agent')">
+            <span class="node-label">Control Plane</span>
+            <span class="node-title">Agent Host</span>
+            <span class="node-body">Gemini API &amp; Smaran MCP memory states</span>
+          </div>
+          
+          <div class="split-connector-container">
+            <div class="split-connector active" id="sconn-1"></div>
+            <div class="split-connector active" id="sconn-2"></div>
+          </div>
+          
+          <!-- Nodes 4: Downstream Targets -->
+          <div class="split-nodes">
+            <!-- Node 4A: K8s -->
+            <div class="arch-node" id="node-k8s" onclick="selectNode('k8s')">
+              <span class="node-label">Execution</span>
+              <span class="node-title">K8s Cluster</span>
+              <span class="node-body">Helm upgrades &amp; pod replicas scaling</span>
+            </div>
+            
+            <!-- Node 4B: Databases -->
+            <div class="arch-node" id="node-db" onclick="selectNode('db')">
+              <span class="node-label">Persistence</span>
+              <span class="node-title">Vector Core</span>
+              <span class="node-body">Qdrant contextual RAG &amp; Postgres db</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Telemetry Console Output -->
+      <div class="terminal-panel" id="terminal">
+        <div class="terminal-header">
+          <span>CONSOLE LOG STREAM</span>
+          <div class="terminal-controls">
+            <div class="control-dot red"></div>
+            <div class="control-dot yellow"></div>
+            <div class="control-dot green"></div>
+          </div>
+        </div>
+        
+        <div id="terminal-content">
+          <div class="terminal-log-row">
+            <span class="terminal-prompt">$</span> <span class="terminal-system">systems-console --init</span>
+          </div>
+          <div class="terminal-log-row">
+            <span class="terminal-info">[INFO]</span> Initializing interactive constellation space... OK
+          </div>
+          <div class="terminal-log-row">
+            <span class="terminal-info">[INFO]</span> Binding telemetry ports to local ports... OK
+          </div>
+          <div class="terminal-log-row">
+            <span class="terminal-success">[SUCCESS]</span> Telemetry system listening. Click on any node in the flowchart above to inspect active pipeline actions.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* 1. Interactive Canvas Particles Script */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let particles = [];
+    const maxParticles = 65;
+    
+    const mouse = {
+      x: null,
+      y: null,
+      radius: 130
+    };
+    
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    
+    window.addEventListener('mouseout', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.baseRadius = Math.random() * 2 + 1;
+        this.radius = this.baseRadius;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#D4AF37'; // Sacred Gold
+        ctx.globalAlpha = 0.25;
+        ctx.fill();
+        ctx.globalAlpha = 1.0;
+      }
+      
+      update() {
+        // Bounce bounds
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+        
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        // Mouse interact
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < mouse.radius) {
+            const force = (mouse.radius - distance) / mouse.radius;
+            this.x -= dx * force * 0.03;
+            this.y -= dy * force * 0.03;
+            this.radius = this.baseRadius + force * 2.5;
+          } else {
+            if (this.radius > this.baseRadius) this.radius -= 0.1;
+          }
+        }
+      }
+    }
+    
+    function initCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles = [];
+      for (let i = 0; i < maxParticles; i++) {
+        particles.push(new Particle());
+      }
+    }
+    
+    function animateCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw grid lines
+      ctx.strokeStyle = '#2A2E3D';
+      ctx.lineWidth = 0.5;
+      ctx.globalAlpha = 0.04;
+      const step = 60;
+      for (let x = 0; x < canvas.width; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1.0;
+      
+      // Connect lines between particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = '#D4AF37';
+            ctx.globalAlpha = (110 - dist) / 110 * 0.08;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+          }
+        }
+      }
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      
+      requestAnimationFrame(animateCanvas);
+    }
+    
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
+    animateCanvas();
+    
+    /* 2. Interactive Terminal Telemetry Actions */
+    const terminalContent = document.getElementById('terminal-content');
+    const terminalContainer = document.getElementById('terminal');
+    
+    const telemetryLogs = {
+      client: [
+        { type: 'prompt', text: 'ks-ai deploy --image qwen-2.5-coder' },
+        { type: 'info', text: '[CLI] Recording terminal session shell command stream...' },
+        { type: 'info', text: '[CLI] Packing command trace metadata via Shell Story...' },
+        { type: 'success', text: '[CLI] Package uploaded successfully. Dispatching POST to API gateway.' }
+      ],
+      gateway: [
+        { type: 'prompt', text: 'apisix-gateway --validate-route' },
+        { type: 'info', text: '[GATEWAY] Received request from client CLI endpoint.' },
+        { type: 'info', text: '[GATEWAY] Querying Keycloak auth server: Token verified (user: Ayushpani).' },
+        { type: 'info', text: '[GATEWAY] Evaluating fine-grained permissions via OpenFGA store...' },
+        { type: 'success', text: '[GATEWAY] OpenFGA access check passed: "write" permission granted on K8s cluster.' }
+      ],
+      agent: [
+        { type: 'prompt', text: 'agent-control-plane --state-lookup' },
+        { type: 'info', text: '[AGENT] Dispatching query to Gemini core orchestrator...' },
+        { type: 'info', text: '[AGENT] Retrieving active session context: loading Smaran MCP memory pack...' },
+        { type: 'info', text: '[AGENT] Found persistent memories regarding prior cluster replica states.' },
+        { type: 'success', text: '[AGENT] Context loaded. Generated Helm deployment config. Dispatching K8s/MCP instructions.' }
+      ],
+      k8s: [
+        { type: 'prompt', text: 'kubectl apply -f deployment.yaml --namespace inference' },
+        { type: 'info', text: '[K8S] Receiving Helm chart upgrade directive from MCP host...' },
+        { type: 'info', text: '[K8S] Executing chart release: scaling deployment qwen-2.5 replicas to 5' },
+        { type: 'info', text: '[K8S] HPA status: 5/5 pods verified running on AMD MI300 clusters.' },
+        { type: 'success', text: '[K8S] Deployment upgrade complete. Release status: HEALTHY (100% active).' }
+      ],
+      db: [
+        { type: 'prompt', text: 'qdrant-client --query-vector' },
+        { type: 'info', text: '[VECTOR] Initializing cosine distance calculation on collection...' },
+        { type: 'info', text: '[VECTOR] 3 context arrays returned with score > 0.88' },
+        { type: 'info', text: '[DB] Committing trace audit log to postgres security instance...' },
+        { type: 'success', text: '[DB] Database sync complete. Telemetry trace stored.' }
+      ]
+    };
+    
+    function logToTerminal(rows) {
+      // Add divider
+      const divRow = document.createElement('div');
+      divRow.style.margin = '15px 0 10px 0';
+      divRow.style.borderBottom = '1px dashed rgba(255,255,255,0.08)';
+      terminalContent.appendChild(divRow);
+      
+      let delay = 0;
+      rows.forEach(row => {
+        setTimeout(() => {
+          const logRow = document.createElement('div');
+          logRow.className = 'terminal-log-row';
+          
+          if (row.type === 'prompt') {
+            logRow.innerHTML = `<span class="terminal-prompt">$</span> <span class="terminal-system">${row.text}</span>`;
+          } else if (row.type === 'info') {
+            logRow.innerHTML = `<span class="terminal-info">[INFO]</span> ${row.text}`;
+          } else if (row.type === 'success') {
+            logRow.innerHTML = `<span class="terminal-success">[SUCCESS]</span> ${row.text}`;
+          } else if (row.type === 'warning') {
+            logRow.innerHTML = `<span class="terminal-warning">[WARNING]</span> ${row.text}`;
+          }
+          
+          terminalContent.appendChild(logRow);
+          // Auto scroll
+          terminalContainer.scrollTop = terminalContainer.scrollHeight;
+        }, delay);
+        delay += 250; // Staggered terminal print typing effect
+      });
+    }
+    
+    function selectNode(nodeId) {
+      // Clear previous selected nodes
+      document.querySelectorAll('.arch-node').forEach(node => {
+        node.classList.remove('selected');
+      });
+      
+      // Select the clicked node
+      const activeNode = document.getElementById(`node-${nodeId}`);
+      if (activeNode) activeNode.classList.add('selected');
+      
+      // Log telemetry
+      if (telemetryLogs[nodeId]) {
+        logToTerminal(telemetryLogs[nodeId]);
+      }
+    }
+    
+    /* 3. Skill Cards Interactive click bindings */
+    const skillResponses = {
+      agentic: [
+        { type: 'prompt', text: 'mcp-server --list-capabilities' },
+        { type: 'info', text: 'Resolving Model Context Protocol bindings...' },
+        { type: 'info', text: 'Linked Smaran Package: Persistent structural memory across conversational agent states.' },
+        { type: 'success', text: 'Verified capability: tool_calling, context_retrieval, agent_swarm_orchestration' }
+      ],
+      k8s: [
+        { type: 'prompt', text: 'kubectl get nodes -o wide' },
+        { type: 'info', text: 'Querying Kubernetes control plane...' },
+        { type: 'info', text: 'Infrastructure configuration: Helm, StatefulSets, HPA scaling policies active.' },
+        { type: 'success', text: 'Active nodes: 3 master nodes, 12 worker nodes (AMD GPU accelerated).' }
+      ],
+      auth: [
+        { type: 'prompt', text: 'openfga-client check-permission --user Ayushpani --action read --object resource:ml-data' },
+        { type: 'info', text: 'Querying centralized API gateway authentication states (APISIX)...' },
+        { type: 'info', text: 'Resolving Keycloak claims and OpenFGA fine-grained relationship assertions...' },
+        { type: 'success', text: 'Authorization assertion: ALLOWED (admin_isolation policy).' }
+      ],
+      pipelines: [
+        { type: 'prompt', text: 'airflow-orchestration --trigger-etl' },
+        { type: 'info', text: 'Triggering scheduled versioned ML workflows on Apache Airflow...' },
+        { type: 'info', text: 'Data ingestion active: Apache NiFi -> CDC -> Kafka aggregation stream.' },
+        { type: 'success', text: 'ETL workflow completed: Data governance synchronized with OpenMetadata.' }
+      ]
+    };
+    
+    function triggerSkill(skillKey) {
+      if (skillResponses[skillKey]) {
+        logToTerminal(skillResponses[skillKey]);
+      }
+    }
+  </script>
+</body>
+</html>
