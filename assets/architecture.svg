@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" width="100%" height="100%">
+  <defs>
+    <!-- Import Google Font -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap');
+      
+      .bg {
+        fill: #0B0F19;
+      }
+      
+      .node-rect {
+        fill: #161B26;
+        stroke: #2E3A52;
+        stroke-width: 1.5;
+        rx: 8px;
+        transition: stroke 0.3s ease;
+      }
+      
+      .node-text {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        fill: #F8FAFC;
+        text-anchor: middle;
+      }
+      
+      .node-subtext {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 400;
+        font-size: 10px;
+        fill: #94A3B8;
+        text-anchor: middle;
+      }
+
+      .node-title {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        fill: #0D9488;
+        letter-spacing: 1.5px;
+        text-anchor: middle;
+      }
+      
+      .flow-line {
+        stroke: #2E3A52;
+        stroke-width: 2;
+        fill: none;
+      }
+
+      .flow-line-active {
+        stroke: #3B82F6;
+        stroke-width: 2;
+        stroke-dasharray: 8, 8;
+        fill: none;
+        animation: flow 30s linear infinite;
+      }
+      
+      .data-packet {
+        fill: #38BDF8;
+        filter: drop-shadow(0px 0px 4px rgba(56, 189, 248, 0.6));
+      }
+
+      .pulse-ring {
+        fill: none;
+        stroke: #0D9488;
+        stroke-width: 1;
+        opacity: 0;
+        transform-origin: center;
+        animation: pulse 3s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+      }
+
+      .status-indicator {
+        fill: #0D9488;
+      }
+      
+      @keyframes flow {
+        from {
+          stroke-dashoffset: 500;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          r: 3px;
+          opacity: 0.8;
+        }
+        70% {
+          r: 15px;
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .node-group:hover .node-rect {
+        stroke: #3B82F6;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="220" class="bg" />
+
+  <!-- Flow Lines Background -->
+  <path d="M 160,110 L 240,110" class="flow-line" />
+  <path d="M 380,110 L 460,110" class="flow-line" />
+  <path d="M 600,110 L 680,110" class="flow-line" />
+  
+  <!-- Flow Lines Active Overlay -->
+  <path d="M 160,110 L 240,110" class="flow-line-active" />
+  <path d="M 380,110 L 460,110" class="flow-line-active" />
+  <path d="M 600,110 L 680,110" class="flow-line-active" />
+
+  <!-- Data Packets (Moving Circles) -->
+  <!-- Client -> API Gateway -->
+  <circle cx="160" cy="110" r="4" class="data-packet">
+    <animate attributeName="cx" values="160; 240" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- API Gateway -> Microservices -->
+  <circle cx="380" cy="110" r="4" class="data-packet">
+    <animate attributeName="cx" values="380; 460" dur="2s" begin="0.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2s" begin="0.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Microservices -> Database -->
+  <circle cx="600" cy="110" r="4" class="data-packet">
+    <animate attributeName="cx" values="600; 680" dur="2s" begin="1s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2s" begin="1s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Nodes Group -->
+  
+  <!-- 1. CLIENT NODE -->
+  <g class="node-group" transform="translate(40, 60)">
+    <rect width="120" height="100" class="node-rect" />
+    <!-- Pulse Effect -->
+    <circle cx="60" cy="25" r="4" class="pulse-ring" />
+    <circle cx="60" cy="25" r="4" class="status-indicator" />
+    
+    <text x="60" y="55" class="node-text">Client Application</text>
+    <text x="60" y="72" class="node-subtext">React / Next.js / HTML</text>
+    <text x="60" y="85" class="node-subtext">HTTP / WebSockets</text>
+  </g>
+
+  <!-- 2. API GATEWAY NODE -->
+  <g class="node-group" transform="translate(260, 60)">
+    <rect width="120" height="100" class="node-rect" />
+    <circle cx="60" cy="25" r="4" class="pulse-ring" />
+    <circle cx="60" cy="25" r="4" class="status-indicator" />
+    
+    <text x="60" y="55" class="node-text">API Gateway</text>
+    <text x="60" y="72" class="node-subtext">Nginx / Reverse Proxy</text>
+    <text x="60" y="85" class="node-subtext">Routing &amp; Rate Limit</text>
+  </g>
+
+  <!-- 3. SERVICES NODE -->
+  <g class="node-group" transform="translate(480, 60)">
+    <rect width="120" height="100" class="node-rect" />
+    <circle cx="60" cy="25" r="4" class="pulse-ring" />
+    <circle cx="60" cy="25" r="4" class="status-indicator" />
+    
+    <text x="60" y="55" class="node-text">Application API</text>
+    <text x="60" y="72" class="node-subtext">FastAPI / Python</text>
+    <text x="60" y="85" class="node-subtext">Keycloak Security</text>
+  </g>
+
+  <!-- 4. DATABASE NODE -->
+  <g class="node-group" transform="translate(640, 60)">
+    <rect width="120" height="100" class="node-rect" />
+    <circle cx="60" cy="25" r="4" class="pulse-ring" />
+    <circle cx="60" cy="25" r="4" class="status-indicator" />
+    
+    <text x="60" y="55" class="node-text">Database Layer</text>
+    <text x="60" y="72" class="node-subtext">PostgreSQL Cluster</text>
+    <text x="60" y="85" class="node-subtext">Alembic Migrations</text>
+  </g>
+
+  <!-- HUD Labels -->
+  <text x="400" y="30" class="node-title">LIVE ARCHITECTURE FLOW STREAM</text>
+</svg>
