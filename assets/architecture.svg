@@ -5,11 +5,11 @@
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
       
       .bg {
-        fill: #0B0F19;
+        fill: #080C14;
       }
       
       .node-rect {
-        fill: #161B26;
+        fill: #0E121C;
         stroke: #2E3A52;
         stroke-width: 1.5;
         rx: 8px;
@@ -36,7 +36,7 @@
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-weight: 700;
         font-size: 11px;
-        fill: #0D9488;
+        fill: #E28743; /* Holy Saffron */
         letter-spacing: 1.5px;
         text-anchor: middle;
       }
@@ -48,7 +48,7 @@
       }
 
       .flow-line-active {
-        stroke: #3B82F6;
+        stroke: #D4AF37; /* Sacred Gold */
         stroke-width: 1.5;
         stroke-dasharray: 6, 6;
         fill: none;
@@ -56,13 +56,13 @@
       }
       
       .data-packet {
-        fill: #38BDF8;
-        filter: drop-shadow(0px 0px 3px rgba(56, 189, 248, 0.5));
+        fill: #E28743; /* Holy Saffron */
+        filter: drop-shadow(0px 0px 3px rgba(226, 135, 67, 0.5));
       }
 
       .pulse-ring {
         fill: none;
-        stroke: #0D9488;
+        stroke: #E28743;
         stroke-width: 1;
         opacity: 0;
         transform-origin: center;
@@ -70,7 +70,7 @@
       }
 
       .status-indicator {
-        fill: #0D9488;
+        fill: #E28743;
       }
       
       @keyframes flow {
@@ -97,8 +97,8 @@
       }
 
       .node-group:hover .node-rect {
-        stroke: #3B82F6;
-        fill: #1E293B;
+        stroke: #D4AF37;
+        fill: #1C1F2E;
       }
     </style>
   </defs>

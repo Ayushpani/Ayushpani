@@ -5,23 +5,23 @@
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
       
       .bg {
-        fill: #0B0F19;
+        fill: #080C14;
       }
       
       .shelf-title {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-weight: 800;
         font-size: 11px;
-        fill: #4F46E5;
+        fill: #E28743; /* Holy Saffron */
         letter-spacing: 1.5px;
         text-anchor: middle;
       }
 
-      .shelf-title.devops { fill: #0D9488; }
-      .shelf-title.languages { fill: #2563EB; }
+      .shelf-title.devops { fill: #D4AF37; } /* Sacred Gold */
+      .shelf-title.languages { fill: #FFFFFF; }
       
       .card-rect {
-        fill: #161B26;
+        fill: #0E121C;
         stroke: #2E3A52;
         stroke-width: 1;
         rx: 6px;
@@ -43,7 +43,8 @@
       }
 
       .icon-path {
-        fill: #94A3B8;
+        fill: #E28743; /* Holy Saffron */
+        transition: fill 0.3s;
       }
 
       /* Animation definitions */
@@ -74,12 +75,12 @@
       }
 
       .card-group:hover .card-rect {
-        stroke: #3B82F6;
-        fill: #1E293B;
+        stroke: #D4AF37;
+        fill: #1C1F2E;
       }
 
       .card-group:hover .icon-path {
-        fill: #38BDF8;
+        fill: #D4AF37; /* Gold on hover */
       }
     </style>
   </defs>
@@ -99,9 +100,9 @@
       <circle cx="15" cy="30" r="2" class="icon-path" />
       <circle cx="29" cy="30" r="2" class="icon-path" />
       <circle cx="22" cy="14" r="2" class="icon-path" />
-      <line x1="22" y1="23" x2="15" y2="30" stroke="#94A3B8" stroke-width="1" />
-      <line x1="22" y1="23" x2="29" y2="30" stroke="#94A3B8" stroke-width="1" />
-      <line x1="22" y1="23" x2="22" y2="14" stroke="#94A3B8" stroke-width="1" />
+      <line x1="22" y1="23" x2="15" y2="30" stroke="#E28743" stroke-width="1" />
+      <line x1="22" y1="23" x2="29" y2="30" stroke="#E28743" stroke-width="1" />
+      <line x1="22" y1="23" x2="22" y2="14" stroke="#E28743" stroke-width="1" />
       <text x="44" y="21" class="card-text">Agentic AI &amp; MCP</text>
       <text x="44" y="33" class="card-subtext">LangChain, Swarm, Model Context Protocol</text>
     </g>
@@ -119,9 +120,9 @@
     <g class="card-group" transform="translate(36, 162)">
       <rect width="232" height="46" class="card-rect" />
       <!-- Airflow gears representation -->
-      <circle cx="22" cy="23" r="7" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="22" y1="13" x2="22" y2="33" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="12" y1="23" x2="32" y2="23" stroke="#94A3B8" stroke-width="1.5" />
+      <circle cx="22" cy="23" r="7" fill="none" stroke="#E28743" stroke-width="1.5" />
+      <line x1="22" y1="13" x2="22" y2="33" stroke="#E28743" stroke-width="1.5" />
+      <line x1="12" y1="23" x2="32" y2="23" stroke="#E28743" stroke-width="1.5" />
       <text x="44" y="21" class="card-text">MLOps Pipelines</text>
       <text x="44" y="33" class="card-subtext">Apache Airflow, NiFi, Kubeflow</text>
     </g>
@@ -130,8 +131,8 @@
     <g class="card-group" transform="translate(36, 218)">
       <rect width="232" height="46" class="card-rect" />
       <!-- Database cylinders with search glass -->
-      <circle cx="22" cy="20" r="5" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="26" y1="24" x2="31" y2="29" stroke="#94A3B8" stroke-width="2" />
+      <circle cx="22" cy="20" r="5" fill="none" stroke="#E28743" stroke-width="1.5" />
+      <line x1="26" y1="24" x2="31" y2="29" stroke="#E28743" stroke-width="2" />
       <text x="44" y="21" class="card-text">Vector Retrieval &amp; RAG</text>
       <text x="44" y="33" class="card-subtext">Qdrant, ChromaDB, LlamaIndex</text>
     </g>
@@ -145,9 +146,9 @@
     <g class="card-group" transform="translate(284, 50)">
       <rect width="232" height="46" class="card-rect" />
       <!-- K8s wheel shape -->
-      <path class="icon-path" d="M 22,15 L 28,17 L 31,23 L 28,29 L 22,31 L 16,29 L 13,23 L 16,17 Z" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="22" y1="15" x2="22" y2="31" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="13" y1="23" x2="31" y2="23" stroke="#94A3B8" stroke-width="1.5" />
+      <path class="icon-path" d="M 22,15 L 28,17 L 31,23 L 28,29 L 22,31 L 16,29 L 13,23 L 16,17 Z" fill="none" stroke="#E28743" stroke-width="1.5" />
+      <line x1="22" y1="15" x2="22" y2="31" stroke="#E28743" stroke-width="1.5" />
+      <line x1="13" y1="23" x2="31" y2="23" stroke="#E28743" stroke-width="1.5" />
       <text x="44" y="21" class="card-text">Kubernetes Orchestration</text>
       <text x="44" y="33" class="card-subtext">Helm, HPA, K8s Operators, Docker</text>
     </g>
@@ -165,7 +166,7 @@
     <g class="card-group" transform="translate(284, 162)">
       <rect width="232" height="46" class="card-rect" />
       <!-- Lock icon -->
-      <path class="icon-path" d="M 19,20 L 19,16 C 19,13 25,13 25,16 L 25,20 M 16,20 L 28,20 L 28,30 L 16,30 Z" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <path class="icon-path" d="M 19,20 L 19,16 C 19,13 25,13 25,16 L 25,20 M 16,20 L 28,20 L 28,30 L 16,30 Z" fill="none" stroke="#E28743" stroke-width="1.5" />
       <text x="44" y="21" class="card-text">Identity &amp; AuthZ</text>
       <text x="44" y="33" class="card-subtext">Keycloak, OpenFGA, RBAC, OAuth2</text>
     </g>
@@ -174,10 +175,10 @@
     <g class="card-group" transform="translate(284, 218)">
       <rect width="232" height="46" class="card-rect" />
       <!-- Key representation -->
-      <circle cx="18" cy="23" r="4" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="22" y1="23" x2="30" y2="23" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="26" y1="23" x2="26" y2="27" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="29" y1="23" x2="29" y2="27" stroke="#94A3B8" stroke-width="1.5" />
+      <circle cx="18" cy="23" r="4" fill="none" stroke="#E28743" stroke-width="1.5" />
+      <line x1="22" y1="23" x2="30" y2="23" stroke="#E28743" stroke-width="1.5" />
+      <line x1="26" y1="23" x2="26" y2="27" stroke="#E28743" stroke-width="1.5" />
+      <line x1="29" y1="23" x2="29" y2="27" stroke="#E28743" stroke-width="1.5" />
       <text x="44" y="21" class="card-text">Platform Security</text>
       <text x="44" y="33" class="card-subtext">API Key Infrastructure, SSL/TLS, Certs</text>
     </g>
@@ -191,7 +192,7 @@
     <g class="card-group" transform="translate(532, 50)">
       <rect width="232" height="46" class="card-rect" />
       <!-- Code bracket icon -->
-      <path class="icon-path" d="M 18,18 L 13,23 L 18,28 M 26,18 L 31,23 L 26,28" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <path class="icon-path" d="M 18,18 L 13,23 L 18,28 M 26,18 L 31,23 L 26,28" fill="none" stroke="#E28743" stroke-width="1.5" />
       <text x="44" y="21" class="card-text">Development Languages</text>
       <text x="44" y="33" class="card-subtext">Python, Go, SQL, Shell Scripting, YAML</text>
     </g>
@@ -200,7 +201,7 @@
     <g class="card-group" transform="translate(532, 106)">
       <rect width="232" height="46" class="card-rect" />
       <!-- Cylinders icon -->
-      <path class="icon-path" d="M 16,18 C 16,16 28,16 28,18 L 28,21 C 28,23 16,23 16,21 Z M 16,21 C 16,23 28,23 28,21 L 28,25 C 28,27 16,27 16,25 Z M 16,25 C 16,27 28,27 28,25 L 28,29 C 28,31 16,31 16,29 Z" fill="none" stroke="#94A3B8" stroke-width="1" />
+      <path class="icon-path" d="M 16,18 C 16,16 28,16 28,18 L 28,21 C 28,23 16,23 16,21 Z M 16,21 C 16,23 28,23 28,21 L 28,25 C 28,27 16,27 16,25 Z M 16,25 C 16,27 28,27 28,25 L 28,29 C 28,31 16,31 16,29 Z" fill="none" stroke="#E28743" stroke-width="1" />
       <text x="44" y="21" class="card-text">Databases</text>
       <text x="44" y="33" class="card-subtext">PostgreSQL, MongoDB, ArangoDB, Redis</text>
     </g>
@@ -218,8 +219,8 @@
     <g class="card-group" transform="translate(532, 218)">
       <rect width="232" height="46" class="card-rect" />
       <!-- Web layout icon -->
-      <rect x="15" y="17" width="14" height="12" fill="none" stroke="#94A3B8" stroke-width="1.5" rx="2" />
-      <line x1="15" y1="21" x2="29" y2="21" stroke="#94A3B8" stroke-width="1.5" />
+      <rect x="15" y="17" width="14" height="12" fill="none" stroke="#E28743" stroke-width="1.5" rx="2" />
+      <line x1="15" y1="21" x2="29" y2="21" stroke="#E28743" stroke-width="1.5" />
       <text x="44" y="21" class="card-text">Interfaces &amp; UI</text>
       <text x="44" y="33" class="card-subtext">REST APIs, React, Node.js</text>
     </g>

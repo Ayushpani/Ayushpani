@@ -67,19 +67,14 @@ This visual flow represents a typical request loop within my deployment architec
 
 ## GitHub Metrics
 
-<table width="100%">
-  <tr>
-    <td width="50%" align="center" style="border: none;">
-      <img src="https://github-readme-stats.vercel.app/api?username=Ayushpani&show_icons=true&bg_color=0B0F19&title_color=3B82F6&icon_color=0D9488&text_color=94A3B8&border_color=2E3A52&hide_rank=false" alt="Ayushpani Stats" width="100%" />
-    </td>
-    <td width="50%" align="center" style="border: none;">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Ayushpani&layout=compact&bg_color=0B0F19&title_color=3B82F6&icon_color=0D9488&text_color=94A3B8&border_color=2E3A52" alt="Top Languages" width="100%" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Ayushpani&show_icons=true&bg_color=080C14&title_color=E28743&icon_color=D4AF37&text_color=94A3B8&border_color=2A2E3D&hide_rank=false" alt="Ayushpani Stats" width="49%" />
+  &nbsp;&nbsp;
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Ayushpani&layout=compact&bg_color=080C14&title_color=E28743&icon_color=D4AF37&text_color=94A3B8&border_color=2A2E3D" alt="Top Languages" width="49%" />
+</p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Ayushpani&background=0B0F19&fire=0D9488&ring=3B82F6&currStreakNum=F8FAFC&sideNums=94A3B8&currStreakLabel=3B82F6&sideLabels=94A3B8&dates=94A3B8&border=2E3A52" alt="GitHub Streak" width="100%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Ayushpani&background=080C14&fire=E28743&ring=D4AF37&currStreakNum=F8FAFC&sideNums=94A3B8&currStreakLabel=E28743&sideLabels=94A3B8&dates=94A3B8&border=2A2E3D" alt="GitHub Streak" width="100%" />
 </p>
 
 ---
