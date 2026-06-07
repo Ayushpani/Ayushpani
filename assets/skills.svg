@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 290" width="100%" height="100%">
   <defs>
     <!-- Import Google Font -->
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
       
       .bg {
         fill: #0B0F19;
@@ -17,8 +17,8 @@
         text-anchor: middle;
       }
 
-      .shelf-title.backend { fill: #0D9488; }
-      .shelf-title.devops { fill: #2563EB; }
+      .shelf-title.devops { fill: #0D9488; }
+      .shelf-title.languages { fill: #2563EB; }
       
       .card-rect {
         fill: #161B26;
@@ -30,15 +30,15 @@
       
       .card-text {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-weight: 600;
-        font-size: 12px;
+        font-weight: 700;
+        font-size: 11.5px;
         fill: #F8FAFC;
       }
       
       .card-subtext {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-weight: 400;
-        font-size: 9px;
+        font-weight: 500;
+        font-size: 8.5px;
         fill: #94A3B8;
       }
 
@@ -49,16 +49,19 @@
       /* Animation definitions */
       .fade-col-1 {
         opacity: 0;
+        transform: translateY(10px);
         animation: cardFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         animation-delay: 0.1s;
       }
       .fade-col-2 {
         opacity: 0;
+        transform: translateY(10px);
         animation: cardFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         animation-delay: 0.3s;
       }
       .fade-col-3 {
         opacity: 0;
+        transform: translateY(10px);
         animation: cardFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         animation-delay: 0.5s;
       }
@@ -78,121 +81,147 @@
       .card-group:hover .icon-path {
         fill: #38BDF8;
       }
-
-      .card-group {
-        cursor: pointer;
-      }
     </style>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="240" class="bg" />
+  <rect width="800" height="290" class="bg" />
 
-  <!-- COLUMN 1: Languages & Frontend -->
+  <!-- COLUMN 1: AI, MLOps & Data -->
   <g class="fade-col-1">
-    <text x="130" y="30" class="shelf-title">LANGUAGES &amp; FRONTEND</text>
+    <text x="152" y="30" class="shelf-title">AI, MLOPS &amp; DATA PLATFORM</text>
     
-    <!-- JS & TS -->
-    <g class="card-group" transform="translate(40, 50)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- JS logo -->
-      <path class="icon-path" d="M 20,15 L 35,15 L 35,30 L 20,30 Z" fill="#94A3B8" opacity="0.3" />
-      <text x="23" y="27" font-family="'Plus Jakarta Sans'" font-weight="800" font-size="10" fill="#F8FAFC">JS</text>
-      <text x="48" y="22" class="card-text">JavaScript &amp; TS</text>
-      <text x="48" y="34" class="card-subtext">Modern ES6+, Next.js, React</text>
+    <!-- Row 1: Agentic AI & MCP -->
+    <g class="card-group" transform="translate(36, 50)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Swarm nodes icon -->
+      <circle cx="22" cy="23" r="3" class="icon-path" />
+      <circle cx="15" cy="30" r="2" class="icon-path" />
+      <circle cx="29" cy="30" r="2" class="icon-path" />
+      <circle cx="22" cy="14" r="2" class="icon-path" />
+      <line x1="22" y1="23" x2="15" y2="30" stroke="#94A3B8" stroke-width="1" />
+      <line x1="22" y1="23" x2="29" y2="30" stroke="#94A3B8" stroke-width="1" />
+      <line x1="22" y1="23" x2="22" y2="14" stroke="#94A3B8" stroke-width="1" />
+      <text x="44" y="21" class="card-text">Agentic AI &amp; MCP</text>
+      <text x="44" y="33" class="card-subtext">LangChain, Swarm, Model Context Protocol</text>
     </g>
 
-    <!-- HTML & CSS -->
-    <g class="card-group" transform="translate(40, 110)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- Shield / Layout logo -->
-      <path class="icon-path" d="M 27,14 L 35,17 L 33,28 L 27,31 L 21,28 L 19,17 Z" />
-      <text x="48" y="22" class="card-text">HTML5 &amp; CSS3</text>
-      <text x="48" y="34" class="card-subtext">Responsive, Flexbox, Grid</text>
+    <!-- Row 2: LLM Orchestrator -->
+    <g class="card-group" transform="translate(36, 106)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- AI model/neuron representation -->
+      <path class="icon-path" d="M 16,23 L 28,15 L 28,31 Z" />
+      <text x="44" y="21" class="card-text">LLM Orchestration</text>
+      <text x="44" y="33" class="card-subtext">LLaMA, Qwen, Fine-tuning, LoRA/SFT</text>
     </g>
 
-    <!-- Shell Scripting -->
-    <g class="card-group" transform="translate(40, 170)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- Terminal logo -->
-      <path class="icon-path" d="M 20,18 L 26,22 L 20,26 M 28,26 L 34,26" stroke="#94A3B8" stroke-width="2" fill="none" />
-      <text x="48" y="22" class="card-text">Shell Scripting</text>
-      <text x="48" y="34" class="card-subtext">Bash &amp; PowerShell utilities</text>
+    <!-- Row 3: MLOps Pipelines -->
+    <g class="card-group" transform="translate(36, 162)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Airflow gears representation -->
+      <circle cx="22" cy="23" r="7" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="22" y1="13" x2="22" y2="33" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="12" y1="23" x2="32" y2="23" stroke="#94A3B8" stroke-width="1.5" />
+      <text x="44" y="21" class="card-text">MLOps Pipelines</text>
+      <text x="44" y="33" class="card-subtext">Apache Airflow, NiFi, Kubeflow</text>
+    </g>
+
+    <!-- Row 4: Vector Retrieval & RAG -->
+    <g class="card-group" transform="translate(36, 218)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Database cylinders with search glass -->
+      <circle cx="22" cy="20" r="5" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="26" y1="24" x2="31" y2="29" stroke="#94A3B8" stroke-width="2" />
+      <text x="44" y="21" class="card-text">Vector Retrieval &amp; RAG</text>
+      <text x="44" y="33" class="card-subtext">Qdrant, ChromaDB, LlamaIndex</text>
     </g>
   </g>
 
-  <!-- COLUMN 2: Backend & Logic -->
+  <!-- COLUMN 2: DevOps, Security & Auth -->
   <g class="fade-col-2">
-    <text x="400" y="30" class="shelf-title backend">BACKEND &amp; DATABASES</text>
+    <text x="400" y="30" class="shelf-title devops">DEVOPS, SEC &amp; AUTH</text>
     
-    <!-- Python & FastAPI -->
-    <g class="card-group" transform="translate(310, 50)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- Python snakes representation -->
-      <path class="icon-path" d="M 23,15 C 20,15 20,18 20,20 L 20,22 L 23,22 L 23,23 L 26,23 L 26,20 C 26,18 28,18 30,18 L 32,18 L 32,15 Z M 31,30 C 34,30 34,27 34,25 L 34,23 L 31,23 L 31,22 L 28,22 L 28,25 C 28,27 26,27 24,27 L 22,27 L 22,30 Z" />
-      <text x="48" y="22" class="card-text">Python &amp; FastAPI</text>
-      <text x="48" y="34" class="card-subtext">REST APIs, Async programming</text>
+    <!-- Row 1: Kubernetes -->
+    <g class="card-group" transform="translate(284, 50)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- K8s wheel shape -->
+      <path class="icon-path" d="M 22,15 L 28,17 L 31,23 L 28,29 L 22,31 L 16,29 L 13,23 L 16,17 Z" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="22" y1="15" x2="22" y2="31" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="13" y1="23" x2="31" y2="23" stroke="#94A3B8" stroke-width="1.5" />
+      <text x="44" y="21" class="card-text">Kubernetes Orchestration</text>
+      <text x="44" y="33" class="card-subtext">Helm, HPA, K8s Operators, Docker</text>
     </g>
 
-    <!-- Database PostgreSQL -->
-    <g class="card-group" transform="translate(310, 110)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- Database cylinder -->
-      <path class="icon-path" d="M 20,17 C 20,15 34,15 34,17 L 34,22 C 34,24 20,24 20,22 Z M 20,22 C 20,24 34,24 34,22 L 34,27 C 34,29 20,29 20,27 Z M 20,27 C 20,29 34,29 34,27 L 34,32 C 34,34 20,34 20,32 Z" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <text x="48" y="22" class="card-text">PostgreSQL &amp; SQL</text>
-      <text x="48" y="34" class="card-subtext">SQLAlchemy, Alembic migrations</text>
+    <!-- Row 2: API Gateway -->
+    <g class="card-group" transform="translate(284, 106)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Funnel gateway -->
+      <path class="icon-path" d="M 14,16 L 30,16 L 24,24 L 24,30 L 20,30 L 20,24 Z" />
+      <text x="44" y="21" class="card-text">API Gateways</text>
+      <text x="44" y="33" class="card-subtext">APISIX, Kong, Ingress, Cert-manager</text>
     </g>
 
-    <!-- Keycloak Security -->
-    <g class="card-group" transform="translate(310, 170)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- Lock / Key icon -->
-      <path class="icon-path" d="M 23,21 L 23,18 C 23,15 27,15 27,18 L 27,21 M 20,21 L 34,21 L 34,31 L 20,31 Z" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <text x="48" y="22" class="card-text">Keycloak &amp; Security</text>
-      <text x="48" y="34" class="card-subtext">OAuth2, OIDC, Authentication</text>
+    <!-- Row 3: Identity & AuthZ -->
+    <g class="card-group" transform="translate(284, 162)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Lock icon -->
+      <path class="icon-path" d="M 19,20 L 19,16 C 19,13 25,13 25,16 L 25,20 M 16,20 L 28,20 L 28,30 L 16,30 Z" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <text x="44" y="21" class="card-text">Identity &amp; AuthZ</text>
+      <text x="44" y="33" class="card-subtext">Keycloak, OpenFGA, RBAC, OAuth2</text>
+    </g>
+
+    <!-- Row 4: Platform Security -->
+    <g class="card-group" transform="translate(284, 218)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Key representation -->
+      <circle cx="18" cy="23" r="4" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="22" y1="23" x2="30" y2="23" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="26" y1="23" x2="26" y2="27" stroke="#94A3B8" stroke-width="1.5" />
+      <line x1="29" y1="23" x2="29" y2="27" stroke="#94A3B8" stroke-width="1.5" />
+      <text x="44" y="21" class="card-text">Platform Security</text>
+      <text x="44" y="33" class="card-subtext">API Key Infrastructure, SSL/TLS, Certs</text>
     </g>
   </g>
 
-  <!-- COLUMN 3: DevOps & Tools -->
+  <!-- COLUMN 3: Languages & Databases -->
   <g class="fade-col-3">
-    <text x="670" y="30" class="shelf-title devops">DEVOPS &amp; CONTAINERS</text>
+    <text x="648" y="30" class="shelf-title languages">LANGUAGES &amp; DATA</text>
     
-    <!-- Docker -->
-    <g class="card-group" transform="translate(580, 50)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- Container blocks -->
-      <rect x="22" y="15" width="4" height="4" class="icon-path" />
-      <rect x="27" y="15" width="4" height="4" class="icon-path" />
-      <rect x="32" y="15" width="4" height="4" class="icon-path" />
-      <rect x="24" y="20" width="4" height="4" class="icon-path" />
-      <rect x="29" y="20" width="4" height="4" class="icon-path" />
-      <path class="icon-path" d="M 18,26 C 18,29 25,29 27,29 C 32,29 35,27 36,25 L 16,25 Z" />
-      <text x="48" y="22" class="card-text">Docker &amp; Containers</text>
-      <text x="48" y="34" class="card-subtext">Containerization &amp; Multi-stage builds</text>
+    <!-- Row 1: Languages -->
+    <g class="card-group" transform="translate(532, 50)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Code bracket icon -->
+      <path class="icon-path" d="M 18,18 L 13,23 L 18,28 M 26,18 L 31,23 L 26,28" fill="none" stroke="#94A3B8" stroke-width="1.5" />
+      <text x="44" y="21" class="card-text">Development Languages</text>
+      <text x="44" y="33" class="card-subtext">Python, Go, SQL, Shell Scripting, YAML</text>
     </g>
 
-    <!-- Kubernetes -->
-    <g class="card-group" transform="translate(580, 110)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- K8s wheel shape -->
-      <path class="icon-path" d="M 27,13 L 34,16 L 37,23 L 34,30 L 27,33 L 20,30 L 17,23 L 20,16 Z" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="27" y1="13" x2="27" y2="33" stroke="#94A3B8" stroke-width="1.5" />
-      <line x1="17" y1="23" x2="37" y2="23" stroke="#94A3B8" stroke-width="1.5" />
-      <text x="48" y="22" class="card-text">Kubernetes</text>
-      <text x="48" y="34" class="card-subtext">Orchestration, Deployments, Pods</text>
+    <!-- Row 2: Databases -->
+    <g class="card-group" transform="translate(532, 106)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Cylinders icon -->
+      <path class="icon-path" d="M 16,18 C 16,16 28,16 28,18 L 28,21 C 28,23 16,23 16,21 Z M 16,21 C 16,23 28,23 28,21 L 28,25 C 28,27 16,27 16,25 Z M 16,25 C 16,27 28,27 28,25 L 28,29 C 28,31 16,31 16,29 Z" fill="none" stroke="#94A3B8" stroke-width="1" />
+      <text x="44" y="21" class="card-text">Databases</text>
+      <text x="44" y="33" class="card-subtext">PostgreSQL, MongoDB, ArangoDB, Redis</text>
     </g>
 
-    <!-- Git & CI/CD -->
-    <g class="card-group" transform="translate(580, 170)">
-      <rect width="180" height="45" class="card-rect" />
-      <!-- Git branch node representation -->
-      <circle cx="23" cy="28" r="3" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <circle cx="23" cy="18" r="3" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <circle cx="32" cy="18" r="3" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <path d="M 23,25 L 23,21" stroke="#94A3B8" stroke-width="1.5" />
-      <path d="M 23,25 C 23,22 32,22 32,21" fill="none" stroke="#94A3B8" stroke-width="1.5" />
-      <text x="48" y="22" class="card-text">Git &amp; GitHub Actions</text>
-      <text x="48" y="34" class="card-subtext">Version control &amp; pipelines</text>
+    <!-- Row 3: Data Aggregators -->
+    <g class="card-group" transform="translate(532, 162)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Flow arrows representation -->
+      <path class="icon-path" d="M 14,20 L 22,20 L 22,15 L 30,23 L 22,31 L 22,26 L 14,26 Z" />
+      <text x="44" y="21" class="card-text">Data Aggregators</text>
+      <text x="44" y="33" class="card-subtext">Kafka, CDC, Airbyte, ETL/ELT pipelines</text>
+    </g>
+
+    <!-- Row 4: Interfaces & UI -->
+    <g class="card-group" transform="translate(532, 218)">
+      <rect width="232" height="46" class="card-rect" />
+      <!-- Web layout icon -->
+      <rect x="15" y="17" width="14" height="12" fill="none" stroke="#94A3B8" stroke-width="1.5" rx="2" />
+      <line x1="15" y1="21" x2="29" y2="21" stroke="#94A3B8" stroke-width="1.5" />
+      <text x="44" y="21" class="card-text">Interfaces &amp; UI</text>
+      <text x="44" y="33" class="card-subtext">REST APIs, React, Node.js</text>
     </g>
   </g>
 </svg>

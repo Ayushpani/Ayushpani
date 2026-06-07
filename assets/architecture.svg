@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" width="100%" height="100%">
   <defs>
     <!-- Import Google Font -->
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
       
       .bg {
         fill: #0B0F19;
@@ -13,7 +13,7 @@
         stroke: #2E3A52;
         stroke-width: 1.5;
         rx: 8px;
-        transition: stroke 0.3s ease;
+        transition: stroke 0.3s, fill 0.3s;
       }
       
       .node-text {
@@ -26,8 +26,8 @@
       
       .node-subtext {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-weight: 400;
-        font-size: 10px;
+        font-weight: 500;
+        font-size: 9.5px;
         fill: #94A3B8;
         text-anchor: middle;
       }
@@ -43,21 +43,21 @@
       
       .flow-line {
         stroke: #2E3A52;
-        stroke-width: 2;
+        stroke-width: 1.5;
         fill: none;
       }
 
       .flow-line-active {
         stroke: #3B82F6;
-        stroke-width: 2;
-        stroke-dasharray: 8, 8;
+        stroke-width: 1.5;
+        stroke-dasharray: 6, 6;
         fill: none;
-        animation: flow 30s linear infinite;
+        animation: flow 25s linear infinite;
       }
       
       .data-packet {
         fill: #38BDF8;
-        filter: drop-shadow(0px 0px 4px rgba(56, 189, 248, 0.6));
+        filter: drop-shadow(0px 0px 3px rgba(56, 189, 248, 0.5));
       }
 
       .pulse-ring {
@@ -75,7 +75,7 @@
       
       @keyframes flow {
         from {
-          stroke-dashoffset: 500;
+          stroke-dashoffset: 400;
         }
         to {
           stroke-dashoffset: 0;
@@ -84,11 +84,11 @@
 
       @keyframes pulse {
         0% {
-          r: 3px;
+          r: 2px;
           opacity: 0.8;
         }
         70% {
-          r: 15px;
+          r: 12px;
           opacity: 0;
         }
         100% {
@@ -98,89 +98,110 @@
 
       .node-group:hover .node-rect {
         stroke: #3B82F6;
+        fill: #1E293B;
       }
     </style>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="220" class="bg" />
+  <rect width="800" height="260" class="bg" />
 
   <!-- Flow Lines Background -->
-  <path d="M 160,110 L 240,110" class="flow-line" />
-  <path d="M 380,110 L 460,110" class="flow-line" />
-  <path d="M 600,110 L 680,110" class="flow-line" />
+  <path d="M 140,130 L 210,130" class="flow-line" />
+  <path d="M 350,130 L 410,130" class="flow-line" />
+  <!-- Splitting path from agent to execution layers -->
+  <path d="M 570,130 L 610,130 M 610,130 L 610,90 L 650,90 M 610,130 L 610,170 L 650,170" class="flow-line" />
   
   <!-- Flow Lines Active Overlay -->
-  <path d="M 160,110 L 240,110" class="flow-line-active" />
-  <path d="M 380,110 L 460,110" class="flow-line-active" />
-  <path d="M 600,110 L 680,110" class="flow-line-active" />
+  <path d="M 140,130 L 210,130" class="flow-line-active" />
+  <path d="M 350,130 L 410,130" class="flow-line-active" />
+  <path d="M 570,130 L 610,130 M 610,130 L 610,90 L 650,90 M 610,130 L 610,170 L 650,170" class="flow-line-active" />
 
   <!-- Data Packets (Moving Circles) -->
-  <!-- Client -> API Gateway -->
-  <circle cx="160" cy="110" r="4" class="data-packet">
-    <animate attributeName="cx" values="160; 240" dur="2s" repeatCount="indefinite" />
-    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2s" repeatCount="indefinite" />
+  <!-- User Prompt -> APISIX -->
+  <circle cx="140" cy="130" r="3" class="data-packet">
+    <animate attributeName="cx" values="140; 210" dur="2.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2.5s" repeatCount="indefinite" />
   </circle>
 
-  <!-- API Gateway -> Microservices -->
-  <circle cx="380" cy="110" r="4" class="data-packet">
-    <animate attributeName="cx" values="380; 460" dur="2s" begin="0.5s" repeatCount="indefinite" />
-    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2s" begin="0.5s" repeatCount="indefinite" />
+  <!-- APISIX Gateway -> Agent Orchestrator -->
+  <circle cx="350" cy="130" r="3" class="data-packet">
+    <animate attributeName="cx" values="350; 410" dur="2.5s" begin="0.8s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2.5s" begin="0.8s" repeatCount="indefinite" />
   </circle>
 
-  <!-- Microservices -> Database -->
-  <circle cx="600" cy="110" r="4" class="data-packet">
-    <animate attributeName="cx" values="600; 680" dur="2s" begin="1s" repeatCount="indefinite" />
-    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.2; 0.8; 1" dur="2s" begin="1s" repeatCount="indefinite" />
+  <!-- Agent -> Kubernetes Cluster (Top Path) -->
+  <path d="M 570,130 L 610,130 L 610,90 L 650,90" fill="none" stroke="none">
+    <animate id="topPathAnim" attributeName="d" values="M 570,130 L 610,130 L 610,90 L 650,90" />
+  </path>
+  <circle r="3" class="data-packet">
+    <animateMotion dur="2.5s" begin="1.6s" repeatCount="indefinite" path="M 570,130 L 610,130 L 610,90 L 650,90" />
+    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.1; 0.9; 1" dur="2.5s" begin="1.6s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Agent -> Vector DB / Storage (Bottom Path) -->
+  <circle r="3" class="data-packet">
+    <animateMotion dur="2.5s" begin="1.9s" repeatCount="indefinite" path="M 570,130 L 610,130 L 610,170 L 650,170" />
+    <animate attributeName="opacity" values="0; 1; 1; 0" keyTimes="0; 0.1; 0.9; 1" dur="2.5s" begin="1.9s" repeatCount="indefinite" />
   </circle>
 
   <!-- Nodes Group -->
   
-  <!-- 1. CLIENT NODE -->
-  <g class="node-group" transform="translate(40, 60)">
-    <rect width="120" height="100" class="node-rect" />
-    <!-- Pulse Effect -->
-    <circle cx="60" cy="25" r="4" class="pulse-ring" />
-    <circle cx="60" cy="25" r="4" class="status-indicator" />
+  <!-- 1. CLI / USER NODE -->
+  <g class="node-group" transform="translate(20, 75)">
+    <rect width="120" height="110" class="node-rect" />
+    <circle cx="60" cy="20" r="3" class="pulse-ring" />
+    <circle cx="60" cy="20" r="3" class="status-indicator" />
     
-    <text x="60" y="55" class="node-text">Client Application</text>
-    <text x="60" y="72" class="node-subtext">React / Next.js / HTML</text>
-    <text x="60" y="85" class="node-subtext">HTTP / WebSockets</text>
+    <text x="60" y="50" class="node-text">Client &amp; Workspace</text>
+    <text x="60" y="68" class="node-subtext">ks-ai / CLI Commands</text>
+    <text x="60" y="82" class="node-subtext">Natural Language Prompts</text>
+    <text x="60" y="94" class="node-subtext">Shell Session Records</text>
   </g>
 
-  <!-- 2. API GATEWAY NODE -->
-  <g class="node-group" transform="translate(260, 60)">
-    <rect width="120" height="100" class="node-rect" />
-    <circle cx="60" cy="25" r="4" class="pulse-ring" />
-    <circle cx="60" cy="25" r="4" class="status-indicator" />
+  <!-- 2. APISIX GATEWAY & SECURITY NODE -->
+  <g class="node-group" transform="translate(210, 75)">
+    <rect width="140" height="110" class="node-rect" />
+    <circle cx="70" cy="20" r="3" class="pulse-ring" />
+    <circle cx="70" cy="20" r="3" class="status-indicator" />
     
-    <text x="60" y="55" class="node-text">API Gateway</text>
-    <text x="60" y="72" class="node-subtext">Nginx / Reverse Proxy</text>
-    <text x="60" y="85" class="node-subtext">Routing &amp; Rate Limit</text>
+    <text x="70" y="50" class="node-text">APISIX API Gateway</text>
+    <text x="70" y="68" class="node-subtext">Keycloak OAuth2 / OIDC</text>
+    <text x="70" y="82" class="node-subtext">OpenFGA Fine-grained AuthZ</text>
+    <text x="70" y="94" class="node-subtext">Rate Limiting &amp; Logging</text>
   </g>
 
-  <!-- 3. SERVICES NODE -->
-  <g class="node-group" transform="translate(480, 60)">
-    <rect width="120" height="100" class="node-rect" />
-    <circle cx="60" cy="25" r="4" class="pulse-ring" />
-    <circle cx="60" cy="25" r="4" class="status-indicator" />
+  <!-- 3. AGENT ORCHESTRATOR NODE -->
+  <g class="node-group" transform="translate(410, 75)">
+    <rect width="160" height="110" class="node-rect" />
+    <circle cx="80" cy="20" r="3" class="pulse-ring" />
+    <circle cx="80" cy="20" r="3" class="status-indicator" />
     
-    <text x="60" y="55" class="node-text">Application API</text>
-    <text x="60" y="72" class="node-subtext">FastAPI / Python</text>
-    <text x="60" y="85" class="node-subtext">Keycloak Security</text>
+    <text x="80" y="50" class="node-text">Agent Control Plane</text>
+    <text x="80" y="68" class="node-subtext">Gemini LLM Orchestrator</text>
+    <text x="80" y="82" class="node-subtext">Smaran (MCP Memory)</text>
+    <text x="80" y="94" class="node-subtext">Swarm Deployment Agents</text>
   </g>
 
-  <!-- 4. DATABASE NODE -->
-  <g class="node-group" transform="translate(640, 60)">
-    <rect width="120" height="100" class="node-rect" />
-    <circle cx="60" cy="25" r="4" class="pulse-ring" />
-    <circle cx="60" cy="25" r="4" class="status-indicator" />
-    
-    <text x="60" y="55" class="node-text">Database Layer</text>
-    <text x="60" y="72" class="node-subtext">PostgreSQL Cluster</text>
-    <text x="60" y="85" class="node-subtext">Alembic Migrations</text>
+  <!-- 4. EXECUTION LAYER NODES (Right Split) -->
+  <!-- 4A. Kubernetes Clusters -->
+  <g class="node-group" transform="translate(650, 45)">
+    <rect width="130" height="60" class="node-rect" />
+    <circle cx="65" cy="12" r="2" class="pulse-ring" />
+    <circle cx="65" cy="12" r="2" class="status-indicator" />
+    <text x="65" y="32" class="node-text" font-size="11">K8s Clusters</text>
+    <text x="65" y="46" class="node-subtext" font-size="8.5">Helm / HPA / K8s Operators</text>
   </g>
 
-  <!-- HUD Labels -->
-  <text x="400" y="30" class="node-title">LIVE ARCHITECTURE FLOW STREAM</text>
+  <!-- 4B. Data & Memory Core -->
+  <g class="node-group" transform="translate(650, 155)">
+    <rect width="130" height="60" class="node-rect" />
+    <circle cx="65" cy="12" r="2" class="pulse-ring" />
+    <circle cx="65" cy="12" r="2" class="status-indicator" />
+    <text x="65" y="32" class="node-text" font-size="11">Data &amp; Memory Core</text>
+    <text x="65" y="46" class="node-subtext" font-size="8.5">Qdrant Vector DB / PostgreSQL</text>
+  </g>
+
+  <!-- Pipeline Label -->
+  <text x="400" y="30" class="node-title">PRODUCTION-GRADE AGENTIC MLOPS PIPELINE FLOW</text>
 </svg>

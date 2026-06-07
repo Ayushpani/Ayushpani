@@ -1,40 +1,71 @@
 <!-- Header Banner -->
 <p align="center">
-  <img src="./assets/banner.svg" alt="Ayush Pani Banner" width="100%" />
+  <img src="./assets/banner.svg" alt="Ayush Panigrahi Banner" width="100%" />
 </p>
 
 ---
 
-## ⚡ About Me
+## Professional Summary
 
-I am a **Software Engineer & Solutions Architect** dedicated to designing and building robust, production-grade applications. I bridge the gap between frontend user experiences, secure async backends, and containerized cloud deployments.
-
-* 🛠️ **Systems & Backend:** Designing high-performance async web APIs using **Python & FastAPI**, secured with centralized identity management (**Keycloak**).
-* 🗄️ **Relational Databases:** Modelling database schemas, optimizing queries, and handling migrations utilizing **PostgreSQL**, **SQLAlchemy**, and **Alembic**.
-* 🌐 **Frontend Development:** Crafting clean interfaces using modern JavaScript/TypeScript and semantic structures.
-* 🐳 **DevOps & Infrastructure:** Orchestrating dockerized workloads and deploying to cluster systems via **Docker** and **Kubernetes**.
+AI Platform and MLOps Engineer with experience building production-grade Kubernetes infrastructure, Agentic AI systems, and enterprise data platforms. Proven track record deploying Large Language Model (LLM) and Retrieval-Augmented Generation (RAG) pipelines on Kubernetes clusters, architecting fine-grained authorization infrastructure (Keycloak, OpenFGA, APISIX), and leading end-to-end client deployments. Experienced in Model Context Protocol (MCP), multi-agent orchestration, ETL/ELT pipelines, and API gateway design.
 
 ---
 
-## 🔄 Active System Architecture
+## Experience Highlights
 
-This interactive diagram models my typical software stack and data flow pipeline, demonstrating key-to-key communication from the client up to the persistence layer.
+### AI Platform Engineer (Data Scientist)
+**SK International** | Dadar, Mumbai | August 2025 - Present
+- Architected enterprise API key management infrastructure featuring scope-based access control, public/private key lifecycle management, and detailed audit logging.
+- Led the integration of Apache NiFi, Airflow, and OpenMetadata for automated ETL pipelines and data governance across enterprise clients.
+- Engineered production-grade authorization and RBAC using Keycloak, OpenFGA, and APISIX, implementing user isolation across Agentic AI modules.
+- Managed API gateway migration from Kong to APISIX, optimizing routing, rate-limiting, and security policies for LLM inference endpoints.
+- Developed custom encryption layers for data-in-transit between Airbyte and PostgreSQL, successfully passing enterprise security audits.
+
+### MLOps / DevOps Intern
+**Data Science Wizards** | Mumbai | February 2025 - July 2025
+- Deployed RAG agents on Kubernetes using Helm and Horizontal Pod Autoscaling (HPA), reducing query latency by 30%.
+- Engineered Kafka and Change Data Capture (CDC) data aggregator pipelines on Kubernetes, cutting data sync time by 40%.
+- Orchestrated Apache Airflow on Kubernetes utilizing custom StatefulSets and Persistent Volumes (PVs) for versioned ML workflows.
+
+---
+
+## Production Agentic AI & MLOps Architecture
+
+This visual flow represents a typical request loop within my deployment architecture. Natural language commands pass through the secure API gateway layer, route into the Agent Control Plane utilizing Smaran memory and the Model Context Protocol, and execute actions dynamically across the Kubernetes execution plane and database layers.
 
 <p align="center">
-  <img src="./assets/architecture.svg" alt="System Architecture Flow" width="100%" />
+  <img src="./assets/architecture.svg" alt="Agentic AI and MLOps System Architecture" width="100%" />
 </p>
 
 ---
 
-## 💻 Technical Capabilities
+## Core Projects
+
+### Smaran
+- AI agent memory management system exposed via the Model Context Protocol (MCP) and installable as a Python package. 
+- Enables persistent, structured memory across agent sessions for production Agentic AI workflows.
+
+### Shell Story
+- Terminal session recorder that feeds shell commands to a swarm of agents, auto-generating structured deployment documentation in Markdown and PDF formats. 
+- Designed to train future agents for repeatable, error-handled deployments.
+
+### k8s-mcp & ks-ai
+- Go-based multi-cluster pod management command line interface (CLI) with a terminal user interface (TUI) for natural language Kubernetes operations via Gemini-powered agents.
+
+### PruneX
+- Automated feature engineering and feature selection library (available on PyPI) that performs preprocessing, encoding, dimensionality reduction, and leakage detection using deterministic statistical methods.
+
+---
+
+## Technical Capabilities
 
 <p align="center">
-  <img src="./assets/skills.svg" alt="Tech Stack" width="100%" />
+  <img src="./assets/skills.svg" alt="Technical Skills Dashboard" width="100%" />
 </p>
 
 ---
 
-## 📊 GitHub Metrics
+## GitHub Metrics
 
 <table width="100%">
   <tr>
@@ -53,7 +84,7 @@ This interactive diagram models my typical software stack and data flow pipeline
 
 ---
 
-## 📫 Connect With Me
+## Contact
 
 <p align="center">
   <a href="https://linkedin.com/in/ayushpani" target="_blank">
